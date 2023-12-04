@@ -1,0 +1,32 @@
+server:
+  port: 8002
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/microservices
+    username: root
+    password: Suraj@2000
+  config:
+    import: optional:configserver:http://localhost:8006
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  application:
+    name: HOTEL-SERVICE
+
+okta:
+  oauth2:
+    issuer: https://dev-38294628.okta.com/oauth2/default
+    audience: api://default
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#     defaultZone: http://localhost:8004/eureka/
+

@@ -1,0 +1,12 @@
+server:
+  port: 8004
+
+#Spring:
+#  config:
+#    import: optional:configserver:http://localhost:8006              ye yahan lgega bcoz ye server hai clint nhi
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false

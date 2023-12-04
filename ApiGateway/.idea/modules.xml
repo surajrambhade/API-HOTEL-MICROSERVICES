@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ApiGateway/ApiGateway.iml" filepath="$PROJECT_DIR$/ApiGateway/ApiGateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../HotelService/HotelService/HotelService.iml" filepath="$PROJECT_DIR$/../HotelService/HotelService/HotelService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../RatingService/RatingService/RatingService.iml" filepath="$PROJECT_DIR$/../RatingService/RatingService/RatingService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ServicesRegistry/ServicesRegistry/ServicesRegistry.iml" filepath="$PROJECT_DIR$/../ServicesRegistry/ServicesRegistry/ServicesRegistry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../UserService/UserService/UserService.iml" filepath="$PROJECT_DIR$/../UserService/UserService/UserService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../configServer/configServer/configServer.iml" filepath="$PROJECT_DIR$/../configServer/configServer/configServer.iml" />
+    </modules>
+  </component>
+</project>

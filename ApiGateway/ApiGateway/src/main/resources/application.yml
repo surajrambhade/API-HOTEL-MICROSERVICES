@@ -1,0 +1,43 @@
+server:
+  port: 8005
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE   # yahan hum direct http link bhi dal sakte the but humne
+          predicates:                # loadbalanacec use kiya hai toh name se chal jayega
+            - Path=/users/**
+
+        - id: HOTEL-SERVICE
+          uri: lb://HOTEL-SERVICE
+          predicates:
+            - Path=/hotels/**,/staffs/**  # ya /** dal do sub access kr lena , but better ye he hai jo hum kr rhe hai
+
+        - id: RATINGS-SERVICE
+          uri: lb://RATINGS-SERVICE
+          predicates:
+            - Path=/ratings/**
+#  config:
+#    import: optional:configserver:http://localhost:8006
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8004/eureka/
+
+#Pkta configuration for api gateway
+
+okta:
+  oauth2:
+    issuer: https://dev-38294628.okta.com/oauth2/default
+    audience: api://default
+    client-id: 0oa82i5bznLPW14dh5d7
+    client-secret: ljPSrgXpptbwVvKthuUBVPgPuCR9PxtsEd7sKKja
+    scopes: openid, profile, email, offline_access

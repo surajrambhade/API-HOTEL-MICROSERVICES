@@ -1,0 +1,43 @@
+server:
+  port: 8003
+#database configration
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+      database: microservices
+
+  config:
+    import: optional:configserver:http://localhost:8006
+
+
+
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  application:
+    name: RATINGS-SERVICE
+
+okta:
+  oauth2:
+    issuer: https://dev-38294628.okta.com/oauth2/default
+    audience: api://default
+
+
+
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: http://localhost:8004/eureka/
+
+
+
+
+

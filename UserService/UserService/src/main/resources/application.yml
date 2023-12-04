@@ -1,0 +1,106 @@
+server:
+  port: 8001
+
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/microservices
+    username: postgres
+    password: Suraj@2000
+    driver-class-name:
+  config:
+    import: optional:configserver:http://localhost:8006    #Config ab server se lega  aur ye link config server ki hai
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-38294628.okta.com/oauth2/default
+      client:
+        registration:
+          my-internal-client:
+            provider: okta
+            authorization-grant-type: client_credentials
+            scope: internal
+            client-id: 0oa82i5bznLPW14dh5d7
+            client-secret: ljPSrgXpptbwVvKthuUBVPgPuCR9PxtsEd7sKKja
+        provider:
+          okta:
+            issuerUri: https://dev-38294628.okta.com/oauth2/default
+
+
+
+
+#  profiles:
+#    active: prod       # log mai bhi show krega last mai
+
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  application:
+    name: User-SERVICE    # esko comment kr k check , toh config ka name eureka mai show krega ya log mai last mai check kr lo
+#eureka:
+  #instance:
+ #   prefer-ip-address: true
+ # client:
+ #   fetch-registry: true
+  #  register-with-eureka: true
+  #  service-url:
+  #    defaultZone: http://localhost:8004/eureka/
+
+
+# resilience4j config
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health  # '*' bhi likh sakte the all k liya
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      ratingHotelBreaker:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 6s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
+  retry:
+    instances:
+      ratingHotelService:
+        max-attempts: 3
+        wait-duration: 5s
+
+  ratelimiter:
+    instances:
+      userRateLimiter:
+        limit-refresh-period: 4s
+        limit-for-period: 2
+        timeout-duration: 0s
+okta:
+  oauth2:
+    issuer: https://dev-38294628.okta.com/oauth2/default
+    audience: api://default
+    client-id: 0oa82i5bznLPW14dh5d7
+
+
+
+
+
+
+
+
+
+
